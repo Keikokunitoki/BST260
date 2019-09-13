@@ -1,0 +1,36 @@
+---
+title: "BST260lecture_memo"
+author: "Keiko"
+date: "9/11/2019"
+output: html_document
+---
+## 20190911
+#### to update the repository
+Open Git
+
+
+==
+
+cd Desktop
+
+cd 2019
+
+git pull
+
+==
+
+#### lecture memo190911
+add r, cache=TRUE, eval=FALSE
+```{r, cache=TRUE, eval=FALSE}
+a <- 2
+class(a)
+```
+
+add r, cache=FALSE, eval=TRUE
+```{r, cache=FALSE, eval=TRUE}
+a <- 2
+class(a)
+```
+
+
+== is equal to, = is assigning (similar to <-) 
