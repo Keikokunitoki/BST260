@@ -34,3 +34,100 @@ class(a)
 
 
 == is equal to, = is assigning (similar to <-) 
+
+
+### 190916
+##### order
+
+order shows us how to change the original order to make it ordered
+```{r}
+x<-c( 31,4,15,92,65)
+x
+order(x)
+```
+
+If you want to make it descending order,
+```{r}
+order(x, decreasing=TRUE)
+```
+
+#####rank
+```{r}
+rank(x)
+```
+
+
+
+see max
+```{r}
+murders$state[which.max(murders$total)]
+```
+instead of
+
+*i_max<-which.max(murders$total)
+
+murders$state[i_max]*
+
+##### ex. usage of order
+```{r}
+library(dslabs)
+data(murders)
+sort(murders$total)
+
+ind <- order(murders$total) 
+ind
+murders$abb[ind] 
+```
+
+we can combine provided codes
+```{r}
+murders$state[which.max(murders$total)]
+```
+
+wecan also calculate and sort like this
+```{r}
+murder_rate<-murders$total /murders$population *10000
+murder_rate
+murders$abb[order(murder_rate)]
+```
+
+to see the murder rate of Ca
+```{r}
+murder_rate[which(murders$state=="California")]
+```
+
+to see some states
+```{r}
+murder_rate[]
+```
+
+### 190918
+
+#### how to use !
+```{r}
+ind2<-which(c("MA","ME","MI","MO","MU") %in% murders$abb != TRUE)
+ind2
+```
+
+#### Summarize
+
+The `summarize` function in `dplyr` provides a way to compute summary statistics with intuitive and readable code. We can compute the average of the murder rates like this.
+
+
+```{r}
+murders %>% summarize(avg = mean(murder_rate))
+```
+output is in "data.frame"
+
+weighted average can calculated with summarize
+```{r}
+us_murder_rate <- murders %>% 
+  summarize(murder_rate = sum(total) / sum(population) * 100000)
+
+us_murder_rate
+```
+
+to obtain actual number itself, use this
+```{r}
+us_murder_rate %>% .$murder_rate
+```
